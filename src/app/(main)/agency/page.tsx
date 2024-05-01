@@ -12,8 +12,8 @@ const Page = async (
     searchParams: { plan: Plan; state: string; code: string }
   }
 ) => {
-    // const authUser = await currentUser()
-    // if (!authUser) return redirect('agency/sing-in')
+    const authUser = await currentUser()
+    if (!authUser) return redirect('agency/sing-in')
 
     const agencyId = await verifyAndAcceptInvitation()
     console.log(agencyId)
@@ -40,7 +40,7 @@ const Page = async (
       return <div>Not authorized</div>
     }
   }
-  const authUser = await currentUser()
+  // const authUser = await currentUser()
   return (
   <div className='flex justify-center items-center mt-4'>
     <div className='max-w-[850px] border-[1px] p-4 rounded-xl'>
