@@ -29,7 +29,6 @@ import { Draggable, Droppable } from 'react-beautiful-dnd'
 import { Edit, MoreVertical, PlusCircleIcon, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { Dispatch, SetStateAction, useMemo } from 'react'
-// import PipelineTicket from './pipeline-ticket'
 import CustomModal from '@/components/global/custom-modal'
 import TicketForm from '@/components/forms/ticket-form'
 import PipelineTicket from './pipeline-ticket'
@@ -180,7 +179,8 @@ const PipelineLane: React.FC<PipelaneLaneProps> = ({
                     type="ticket"
                   >
                     {(provided) => (
-                      <div className=" max-h-[700px] overflow-scroll pt-12 ">
+                      // delet the overflow-auto
+                      <div className=" max-h-[700px] pt-12 overflow-auto">
                         <div
                           {...provided.droppableProps}
                           ref={provided.innerRef}
