@@ -67,6 +67,165 @@ const AgencyDetails = ({ data }:Props) => {
           }
         }, [data]);
 
+        //1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        // const handleSubmit = async (values: z.infer<typeof FormSchema>) => {
+        //   try {
+        //     let newUserData
+        //     let custId
+        //     if (!data?.id) {
+        //       const bodyData = {
+        //         email: values.companyEmail,
+        //         name: values.name,
+        //         shipping: {
+        //           address: {
+        //             city: values.city,
+        //             country: values.country,
+        //             line1: values.address,
+        //             postal_code: values.zipCode,
+        //             state: values.zipCode,
+        //           },
+        //           name: values.name,
+        //         },
+        //         address: {
+        //           city: values.city,
+        //           country: values.country,
+        //           line1: values.address,
+        //           postal_code: values.zipCode,
+        //           state: values.zipCode,
+        //         },
+        //       }
+      
+        //       // const customerResponse = await fetch('/api/stripe/create-customer', {
+        //       //   method: 'POST',
+        //       //   headers: {
+        //       //     'Content-Type': 'application/json',
+        //       //   },
+        //       //   body: JSON.stringify(bodyData),
+        //       // })
+        //       // const customerData: { customerId: string } =
+        //       //   await customerResponse.json()
+        //       // custId = customerData.customerId
+        //     }
+      
+        //     newUserData = await initUser({ role: 'AGENCY_OWNER' })
+        //     if (!data?.id) return
+      
+        //      await upsertAgency({
+        //       id: data?.id ? data.id : v4(),
+        //       customerId: data?.customerId || custId || '',
+        //       address: values.address,
+        //       agencyLogo: values.agencyLogo,
+        //       city: values.city,
+        //       companyPhone: values.companyPhone,
+        //       country: values.country,
+        //       name: values.name,
+        //       state: values.state,
+        //       whiteLabel: values.whiteLabel,
+        //       zipCode: values.zipCode,
+        //       createdAt: new Date(),
+        //       updatedAt: new Date(),
+        //       companyEmail: values.companyEmail,
+        //       connectAccountId: '',
+        //       goal: 5,
+        //     })
+        //     toast({
+        //       title: 'Created Agency',
+        //     })
+        //     // if (data?.id) return router.refresh()
+        //     //  if (Response) {
+        //     //   console.log(Response)
+        //     //  }
+        //   } catch (error) {
+        //     console.log(error)
+        //     toast({
+        //       variant: 'destructive',
+        //       title: 'Oppse!',
+        //       description: 'could not create your agency',
+        //     })
+        //   }
+        // }
+
+        // 2222222222222222222222222222222222222222222222222222222
+        // const handleSubmit = async (values: z.infer<typeof FormSchema>) => {
+        //   try {
+        //     let newUserData
+        //     let custId
+        //     if (!data?.id) {
+        //       const bodyData = {
+        //         email: values.companyEmail,
+        //         name:values.name,
+        //         shipping: {
+        //           address: {
+        //             city: values.city,
+        //             country: values.country,
+        //             linel: values.address,
+        //             postal_code: values.zipCode,
+        //             state: values.zipCode
+        //           },
+        //           name: values.city,
+        //         },
+        //         address: {
+        //           city: values.city,
+        //           country: values.country,
+        //           linel: values.address,
+        //           postal_code: values.zipCode,
+        //           state: values.zipCode
+        //         },
+        //       }
+        //     //   const customerResponse = await fetch('/api/stripe/create-customer', {
+        //     //     method: 'POST',
+        //     //     headers: {
+        //     //       'Content-Type': 'application/json',
+        //     //     },
+        //     //     body: JSON.stringify(bodyData),
+        //     //   })
+        //     //   const customerData: { customerId: string } =
+        //     //     await customerResponse.json()
+        //     //   custId = customerData.customerId
+        //      }
+
+        //     newUserData = await initUser({role:'AGENCY_OWNER'})
+        //     // if(!data?.customerId && !custId) return;
+        //     if (!data?.id) {
+
+        //       const response = await upsertAgency({
+        //           id: data?.id ? data.id : v4(),
+        //           customerId: data?.customerId || custId || '',
+        //           address: values.address,
+        //           agencyLogo: values.agencyLogo,
+        //           city: values.city,
+        //           companyPhone: values.companyPhone,
+        //           country: values.country,
+        //           name: values.name,
+        //           state: values.state,
+        //           whiteLabel: values.whiteLabel,
+        //           zipCode: values.zipCode,
+        //           createdAt: new Date(),
+        //           updatedAt: new Date(),
+        //           companyEmail: values.companyEmail,
+        //           connectAccountId: '',
+        //           goal: 5,
+        //           })
+        //           toast({
+        //             title:'Created Agency',
+        //           })
+        //           if (data?.id) return router.refresh()
+        //           if (response) {
+  
+        //             return router.refresh()
+        //           }
+        //     }
+            
+        //   } catch (error) {
+        //     console.log(error)
+        //     toast({
+        //       variant: 'destructive',
+        //       title: 'Oppse!',
+        //       description: 'could not create your agency',
+        //     })
+        //   }
+        // }
+        // 33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
         const handleSubmit = async (values: z.infer<typeof FormSchema>) => {
           try {
             let newUserData
@@ -107,9 +266,9 @@ const AgencyDetails = ({ data }:Props) => {
             }
       
             newUserData = await initUser({ role: 'AGENCY_OWNER' })
-            if (!data?.id) return
+            if (!data?.customerId && !custId) return
       
-             await upsertAgency({
+            const response = await upsertAgency({
               id: data?.id ? data.id : v4(),
               customerId: data?.customerId || custId || '',
               address: values.address,
@@ -130,10 +289,10 @@ const AgencyDetails = ({ data }:Props) => {
             toast({
               title: 'Created Agency',
             })
-            // if (data?.id) return router.refresh()
-            //  if (Response) {
-            //   console.log(Response)
-            //  }
+            if (data?.id) return router.refresh()
+            if (response) {
+              return router.refresh()
+            }
           } catch (error) {
             console.log(error)
             toast({
@@ -143,85 +302,6 @@ const AgencyDetails = ({ data }:Props) => {
             })
           }
         }
-
-        
-        // const handleSubmit = async (values: z.infer<typeof FormSchema>) => {
-        //   try {
-        //     let newUserData
-        //     let custId
-        //     if (!data?.id) {
-        //       const bodyData = {
-        //         email: values.companyEmail,
-        //         name:values.name,
-        //         shipping: {
-        //           address: {
-        //             city: values.city,
-        //             country: values.country,
-        //             linel: values.address,
-        //             postal_code: values.zipCode,
-        //             state: values.zipCode
-        //           },
-        //           name: values.city,
-        //         },
-        //         address: {
-        //           city: values.city,
-        //           country: values.country,
-        //           linel: values.address,
-        //           postal_code: values.zipCode,
-        //           state: values.zipCode
-        //         },
-        //       }
-        //     //   const customerResponse = await fetch('/api/stripe/create-customer', {
-        //     //     method: 'POST',
-        //     //     headers: {
-        //     //       'Content-Type': 'application/json',
-        //     //     },
-        //     //     body: JSON.stringify(bodyData),
-        //     //   })
-        //     //   const customerData: { customerId: string } =
-        //     //     await customerResponse.json()
-        //     //   custId = customerData.customerId
-        //      }
-
-        //     newUserData = await initUser({role:'AGENCY_OWNER'})
-        //     if(!data?.customerId && !custId) return;
-            
-        //     const response = await upsertAgency({
-        //         id: data?.id ? data.id : v4(),
-        //         customerId: data?.customerId || custId || '',
-        //         address: values.address,
-        //         agencyLogo: values.agencyLogo,
-        //         city: values.city,
-        //         companyPhone: values.companyPhone,
-        //         country: values.country,
-        //         name: values.name,
-        //         state: values.state,
-        //         whiteLabel: values.whiteLabel,
-        //         zipCode: values.zipCode,
-        //         createdAt: new Date(),
-        //         updatedAt: new Date(),
-        //         companyEmail: values.companyEmail,
-        //         connectAccountId: '',
-        //         goal: 5,
-        //         })
-        //         toast({
-        //           title:'Created Agency',
-        //         })
-        //         if (data?.id) return router.refresh()
-        //         if (response) {
-
-        //           return router.refresh()
-        //         }
-            
-        //   } catch (error) {
-        //     console.log(error)
-        //     toast({
-        //       variant: 'destructive',
-        //       title: 'Oppse!',
-        //       description: 'could not create your agency',
-        //     })
-        //   }
-        // }
         const handleDeleteAgency = async () => {
           if (!data?.id) return
           setDeletingAgency(true)
