@@ -40,7 +40,7 @@ type Props = {
  
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen overflow-auto">
       <Sidebar
         id={params.agencyId}
         type="agency"
