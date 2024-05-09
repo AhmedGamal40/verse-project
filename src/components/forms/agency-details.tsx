@@ -326,7 +326,7 @@ const AgencyDetails = ({ data }:Props) => {
 
   return (
   <AlertDialog >
-    <Card className='w-full my-3'>
+    <Card className='w-full '>
         <CardHeader>
             <CardTitle className='my-'>Agency Information</CardTitle>
             <CardDescription>
