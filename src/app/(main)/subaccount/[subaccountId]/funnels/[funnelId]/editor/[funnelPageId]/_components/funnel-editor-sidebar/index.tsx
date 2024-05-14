@@ -41,17 +41,17 @@ const FunnelEditorSidebar = ({ subaccountId }: Props) => {
             { hidden: state.editor.previewMode }
           )}
         >
-          <TabList />
+        <TabList />
         </SheetContent>
         <SheetContent
           showX={false}
           side="right"
           className={clsx(
-            'mt-[97px] w-80 z-[40] shadow-none p-0 mr-16 bg-background h-full transition-all overflow-hidden ',
+            'mt-[97px] w-80 z-[40] shadow-none p-0 mr-10 bg-background h-full transition-all overflow-hidden ',
             { hidden: state.editor.previewMode }
           )}
         >
-          <div className="grid gap-4 h-full pb-36 overflow-scroll">
+          <div className="grid gap-4 h-full pb-36 overflow-auto">
             <TabsContent value="Settings">
               <SheetHeader className="text-left p-6">
                 <SheetTitle>Styles</SheetTitle>

@@ -7,13 +7,17 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { pricingCards } from '@/lib/constants'
-// import { stripe } from '@/lib/stripe'
+import { stripe } from '@/lib/stripe'
 import clsx from 'clsx'
 import { Check } from 'lucide-react'
 import Image from "next/image";
 import Link from 'next/link'
 
-export default function Home() {
+export default async  function Home() {
+  const prices = await stripe.prices.list({
+    product: process.env.NEXT_PLURA_PRODUCT_ID,
+    active: true,
+  })
   return (
     <>
       <section className="h-full w-full pt-36 relative flex items-center justify-center flex-col">
@@ -46,60 +50,61 @@ export default function Home() {
           ready to commit you can get started for free.
         </p>
         <div className="flex  justify-center gap-4 flex-wrap mt-6">
-          {pricingCards.map((card) => (
+          {prices.data.map((card) => (
           //WIP: Wire up free product from stripe
+          // Unlimited Saas &&  Basic
             <Card
-              key={card.title}
+              key={card.nickname}
               className={clsx('w-[300px] flex flex-col justify-between', {
-                'border-2 border-primary': card.title === 'Unlimited Saas',
+                'border-2 border-primary': card.nickname === 'Unlimited Websites',
               })}
             >
               <CardHeader>
                 <CardTitle
                   className={clsx('', {
-                    'text-muted-foreground': card.title !== 'Unlimited Saas',
+                    'text-muted-foreground': card.nickname !== 'Unlimited Websites',
                   })}
                 >
-                  {card.title}
+                  {card.nickname}
                 </CardTitle>
-                <CardDescription> {card.description}
-                  {/* {
-                    pricingCards.find((c) => c.title === card.description)
+                <CardDescription> 
+                  {
+                    pricingCards.find((c) => c.title === card.nickname)
                       ?.description
-                  } */}
+                  }
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <span className='text-4xl font-bold'>{card.price}</span>
-                <span className='text-muted-foreground'>/m</span>
-                {/* <span className="text-4xl font-bold"> 
-                  {card.`unit_amount` && card.unit_amount / 100}
+                <span className='text-4xl font-bold'>
+                  {card.unit_amount && card.unit_amount / 100}
                 </span>
                 <span className="text-muted-foreground">
                   <span>
                     / {card.recurring?.interval} 
                     </span>
-                </span> */}
+                </span>
               </CardContent>
               <CardFooter className="flex flex-col items-start gap-4">
                 <div>
-                  {card.features.map((feature) => (
+                {pricingCards
+                    .find((c) => c.title === card.nickname)
+                    ?.features.map((feature) => (
                       <div
                         key={feature}
-                        className="flex gap-2 items-center"
+                        className="flex gap-2"
                       >
-                        <Check className='text-muted-foreground'/>
+                        <Check />
                         <p>{feature}</p>
                       </div>
                     ))}
                 </div>
                 <Link
-                  href={`/agency?plan=${card.priceId}`}
+                  href={`/agency?plan=${card.id}`}
                   className={clsx(
                     'w-full text-center bg-primary p-2 rounded-md',
                     {
                       '!bg-muted-foreground':
-                        card.title !== 'Unlimited Saas',
+                        card.nickname  !== 'Unlimited Websites',
                     }
                   )}
                 >
@@ -108,7 +113,8 @@ export default function Home() {
               </CardFooter>
             </Card>
           ))}
-          {/* <Card className={clsx('w-[300px] flex flex-col justify-between')}>
+          {/* Free */}
+          <Card className={clsx('w-[300px] flex flex-col justify-between')}>
             <CardHeader>
               <CardTitle
                 className={clsx({
@@ -149,7 +155,7 @@ export default function Home() {
                 Get Started
               </Link>
             </CardFooter>
-          </Card> */}
+          </Card>
         </div>
       </section>
     </>
