@@ -560,9 +560,9 @@ const AgencyDetails = ({ data }:Props) => {
               </form>
             </Form>
             {data?.id && (
-            <div className="flex flex-row items-center justify-between rounded-lg border border-destructive gap-4 p-4 mt-4">
+            <div className="grid grid-rows-3 items-center justify-between rounded-lg border border-destructive p-4 mt-4">
               <div>
-                <div>Danger Zone</div>
+                <div className='text-center'>Danger Zone</div>
               </div>
               <div className="text-muted-foreground">
                 Deleting your agency cannpt be undone. This will also delete all
